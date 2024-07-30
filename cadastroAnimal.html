@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro do animal</title>
+</head>
+<body>
+    <form action="cadastroAnimal.php" method="post">
+    <fieldset>
+        <legend>Cadastro do animal</legend>
+    <div>
+        <label for="nome">Nome</label>
+        <input type="text" name="nome" id="nome">
+    </div>
+    <div>
+        <label for="especie">Espécie</label>
+        <input type="text" name="especie" id="especie">
+    </div>
+    <div>
+        <label for="raca">Raça</label>
+        <input type="text" name="raca" id="raca">
+    </div>
+    <div>
+        <label for="dtnasc">Nascimento</label>
+        <input type="date" name="dtnasc" id="dtnasc">
+    </div>
+    <div>
+        <label for="castrado">Castrado</label>
+        <select name="castrado" id="castrado">
+            <option value="castrado">Sim</option>
+            <option value="castrado">Não</option>
+        </select>
+    </div>
+    <div>
+        <button type="submit">Cadastrar</button>
+    </div>
+    </fieldset>
+</form>
+</body>
+</html>
