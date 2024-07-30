@@ -17,7 +17,7 @@
 
     <h1>Consulta de pessoas</h1>
     <a href="cadastroPessoa.html">Cadastrar nova pessoa</a>
-    <table align="center" border="1" width="500">
+    <table align="center" border="1" width="800">
     <tr>
         <th>Código</th>
         <th>Nome</th>
@@ -34,7 +34,7 @@
             echo "<td>".$row['id']."</td>";
             echo "<td>".$row['nome']."</td>";
             echo "<td>".$row['email']."</td>";
-            echo "<td>".$row['end']."</td>";
+            echo "<td>".$row['endereco']."</td>";
             echo "<td>".$row['bairro']."</td>";
             echo "<td>".$row['cep']."</td>";
         }

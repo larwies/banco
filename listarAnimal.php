@@ -17,7 +17,7 @@
 
     <h1>Consulta de animais</h1>
     <a href="cadastroAnimal.html">Cadastrar novo animal</a>
-    <table align="center" border="1" width="500">
+    <table align="center" border="1" width="800">
     <tr>
         <th>Código</th>
         <th>Nome</th>
