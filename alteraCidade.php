@@ -1,9 +1,17 @@
+<?php
+    include('includes/conexao.php');
+    $id = $_GET['id'];
+    $sql ="SELECT * FROM Cidade WHERE id=$id";
+    $result =  mysqli_query($con,$sql);
+    $row = mysqli_fetch_array($result);
+
+?>
 <!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Cadastro Animal</title>
+    <title>Altera Cidade</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <style>
         body {
@@ -49,15 +57,12 @@
         .form-container .btn-submit:hover {
             background-color: #0056b3;
         }
-        .form-container .form-check {
-            margin-top: 15px;
-        }
     </style>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Cadastro Animal</a>
+            <a class="navbar-brand" href="#">Alterar Cidade</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -91,60 +96,53 @@
     </nav>
 
     <div class="form-container d-flex flex-column justify-content-center align-items-center">
-        <form action="cadastroAnimalExe.php" method="post">
+        <form action="alteraCidadeExe.php" method="post">
             <fieldset>
-                <legend>Cadastro de Animal</legend>
+                <legend>Alterar Cidade</legend>
                 <div class="row g-3 align-items-center">
                     <div class="col-auto">
-                        <label for="nome" class="col-form-label">Nome do Animal:</label>
+                        <label for="nome" class="col-form-label">Nome da Cidade:</label>
                     </div>
                     <div class="col-auto">
-                        <input type="text" name="nome" id="nome" class="form-control" aria-describedby="NomeAnimal" required>
+                        <input type="text" name="nome" id="nome" class="form-control" aria-describedby="NomeCidade" value="<?php echo $row['nome']?>" required>
                     </div>
-                </div>
-                <div class="row g-3 align-items-center">
-                    <div class="col-auto">
-                        <label for="especie" class="col-form-label">Espécie do Animal:</label>
-                    </div>
-                    <div class="col-auto">
-                        <input type="text" name="especie" id="especie" class="form-control" aria-describedby="EspecieAnimal" required>
-                    </div>
-                </div>
-                <div class="row g-3 align-items-center">
-                    <div class="col-auto">
-                        <label for="raca" class="col-form-label">Raça do Animal:</label>
-                    </div>
-                    <div class="col-auto">
-                        <input type="text" name="raca" id="raca" class="form-control" aria-describedby="RacaAnimal" required>
-                    </div>
-                </div>
-                <div class="row g-3 align-items-center">
-                    <div class="col-auto">
-                        <label for="data_nascimento" class="col-form-label">Data de Nascimento:</label>
-                    </div>
-                    <div class="col-auto">
-                        <input type="date" name="data_nascimento" id="data_nascimento" class="form-control" aria-describedby="DataNascimentoAnimal" required>
-                    </div>
-                </div>
-                <div class="form-check">
-                    <input type="checkbox" id="castrado" name="castrado" value="1" class="form-check-input" checked>
-                    <label for="castrado" class="form-check-label">Castrado</label>
                 </div>
                 <div class="mb-3">
-                    <label for="pessoa" class="form-label">Dono</label>
-                    <select class="form-select" name="pessoa" id="pessoa">
-                        <?php 
-                            include('includes/conexao.php');
-                            $sql = "SELECT * FROM Pessoa";
-                            $result = mysqli_query($con, $sql);
-                            while ($row = mysqli_fetch_array($result)) {
-                                echo "<option value='".$row['id']."'>".$row['nome']."/".$row['email']."</option>";
-                            }
-                        ?>
+                    <label for="estado" class="form-label">Sigla do Estado:</label>
+                    <label for="estado">Sigla do Estado:</label>
+                    <select class="form-select" name="estado" id="estado">
+                    <option value="AC"<?php echo $row['estado'] == "AC" ? " selected" : ""; ?>>AC</option>
+                    <option value="AL"<?php echo $row['estado'] == "AL" ? " selected" : ""; ?>>AL</option>
+                    <option value="AP"<?php echo $row['estado'] == "AP" ? " selected" : ""; ?>>AP</option>
+                    <option value="AM"<?php echo $row['estado'] == "AM" ? " selected" : ""; ?>>AM</option>
+                    <option value="BA"<?php echo $row['estado'] == "BA" ? " selected" : ""; ?>>BA</option>
+                    <option value="CE"<?php echo $row['estado'] == "CE" ? " selected" : ""; ?>>CE</option>
+                    <option value="ES"<?php echo $row['estado'] == "ES" ? " selected" : ""; ?>>ES</option>
+                    <option value="GO"<?php echo $row['estado'] == "GO" ? " selected" : ""; ?>>GO</option>
+                    <option value="MA"<?php echo $row['estado'] == "MA" ? " selected" : ""; ?>>MA</option>
+                    <option value="MT"<?php echo $row['estado'] == "MT" ? " selected" : ""; ?>>MT</option>
+                    <option value="MS"<?php echo $row['estado'] == "MS" ? " selected" : ""; ?>>MS</option>
+                    <option value="MG"<?php echo $row['estado'] == "MG" ? " selected" : ""; ?>>MG</option>
+                    <option value="PA"<?php echo $row['estado'] == "PA" ? " selected" : ""; ?>>PA</option>
+                    <option value="PB"<?php echo $row['estado'] == "PB" ? " selected" : ""; ?>>PB</option>
+                    <option value="PE"<?php echo $row['estado'] == "PE" ? " selected" : ""; ?>>PE</option>
+                    <option value="PI"<?php echo $row['estado'] == "PI" ? " selected" : ""; ?>>PI</option>
+                    <option value="RJ"<?php echo $row['estado'] == "RJ" ? " selected" : ""; ?>>RJ</option>
+                    <option value="RN"<?php echo $row['estado'] == "RN" ? " selected" : ""; ?>>RN</option>
+                    <option value="RS"<?php echo $row['estado'] == "RS" ? " selected" : ""; ?>>RS</option>
+                    <option value="RO"<?php echo $row['estado'] == "RO" ? " selected" : ""; ?>>RO</option>
+                    <option value="RR"<?php echo $row['estado'] == "RR" ? " selected" : ""; ?>>RR</option>
+                    <option value="SC"<?php echo $row['estado'] == "SC" ? " selected" : ""; ?>>SC</option>
+                    <option value="SP"<?php echo $row['estado'] == "SP" ? " selected" : ""; ?>>SP</option>
+                    <option value="SE"<?php echo $row['estado'] == "SE" ? " selected" : ""; ?>>SE</option>
+                    <option value="TO"<?php echo $row['estado'] == "TO" ? " selected" : ""; ?>>TO</option>
                     </select>
                 </div>
                 <div>
-                    <button type="submit" class="btn btn-submit">Cadastrar</button>
+                  <input type="hidden" name='id' value="<?php echo $row['id']?>">;
+                </div>
+                <div>
+                    <button type="submit" class="btn btn-submit">Atualizar</button>
                 </div>
             </fieldset>
         </form>

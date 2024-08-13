@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Cadastro Animal</title>
+    <title>Cadastro Cidade</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <style>
         body {
@@ -49,15 +49,12 @@
         .form-container .btn-submit:hover {
             background-color: #0056b3;
         }
-        .form-container .form-check {
-            margin-top: 15px;
-        }
     </style>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Cadastro Animal</a>
+            <a class="navbar-brand" href="#">Cadastrar Cidade</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -91,56 +88,45 @@
     </nav>
 
     <div class="form-container d-flex flex-column justify-content-center align-items-center">
-        <form action="cadastroAnimalExe.php" method="post">
+        <form action="cadastroCidadeExe.php" method="post">
             <fieldset>
-                <legend>Cadastro de Animal</legend>
+                <legend>Cadastro da Cidade</legend>
                 <div class="row g-3 align-items-center">
                     <div class="col-auto">
-                        <label for="nome" class="col-form-label">Nome do Animal:</label>
+                        <label for="nome" class="col-form-label">Nome da Cidade:</label>
                     </div>
                     <div class="col-auto">
-                        <input type="text" name="nome" id="nome" class="form-control" aria-describedby="NomeAnimal" required>
+                        <input type="text" name="nome" id="nome" class="form-control" aria-describedby="NomeCidade" required>
                     </div>
-                </div>
-                <div class="row g-3 align-items-center">
-                    <div class="col-auto">
-                        <label for="especie" class="col-form-label">Espécie do Animal:</label>
-                    </div>
-                    <div class="col-auto">
-                        <input type="text" name="especie" id="especie" class="form-control" aria-describedby="EspecieAnimal" required>
-                    </div>
-                </div>
-                <div class="row g-3 align-items-center">
-                    <div class="col-auto">
-                        <label for="raca" class="col-form-label">Raça do Animal:</label>
-                    </div>
-                    <div class="col-auto">
-                        <input type="text" name="raca" id="raca" class="form-control" aria-describedby="RacaAnimal" required>
-                    </div>
-                </div>
-                <div class="row g-3 align-items-center">
-                    <div class="col-auto">
-                        <label for="data_nascimento" class="col-form-label">Data de Nascimento:</label>
-                    </div>
-                    <div class="col-auto">
-                        <input type="date" name="data_nascimento" id="data_nascimento" class="form-control" aria-describedby="DataNascimentoAnimal" required>
-                    </div>
-                </div>
-                <div class="form-check">
-                    <input type="checkbox" id="castrado" name="castrado" value="1" class="form-check-input" checked>
-                    <label for="castrado" class="form-check-label">Castrado</label>
                 </div>
                 <div class="mb-3">
-                    <label for="pessoa" class="form-label">Dono</label>
-                    <select class="form-select" name="pessoa" id="pessoa">
-                        <?php 
-                            include('includes/conexao.php');
-                            $sql = "SELECT * FROM Pessoa";
-                            $result = mysqli_query($con, $sql);
-                            while ($row = mysqli_fetch_array($result)) {
-                                echo "<option value='".$row['id']."'>".$row['nome']."/".$row['email']."</option>";
-                            }
-                        ?>
+                    <label for="estado" class="form-label">Sigla do Estado:</label>
+                    <select class="form-select" name="estado" id="estado" required>
+                        <option value="AC">AC</option>
+                        <option value="AL">AL</option>
+                        <option value="AP">AP</option>
+                        <option value="AM">AM</option>
+                        <option value="BA">BA</option>
+                        <option value="CE">CE</option>
+                        <option value="ES">ES</option>
+                        <option value="GO">GO</option>
+                        <option value="MA">MA</option>
+                        <option value="MT">MT</option>
+                        <option value="MS">MS</option>
+                        <option value="MG">MG</option>
+                        <option value="PA">PA</option>
+                        <option value="PB">PB</option>
+                        <option value="PE">PE</option>
+                        <option value="PI">PI</option>
+                        <option value="RJ">RJ</option>
+                        <option value="RN">RN</option>
+                        <option value="RS">RS</option>
+                        <option value="RO">RO</option>
+                        <option value="RR">RR</option>
+                        <option value="SC">SC</option>
+                        <option value="SP">SP</option>
+                        <option value="SE">SE</option>
+                        <option value="TO">TO</option>
                     </select>
                 </div>
                 <div>

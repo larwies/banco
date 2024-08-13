@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Cadastro Animal</title>
+    <title>Cadastro Cliente</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <style>
         body {
@@ -24,7 +24,7 @@
             font-weight: bold; /* Destaca o item ativo */
         }
         .form-container {
-            max-width: 600px;
+            max-width: 800px;
             width: 100%;
         }
         .form-container fieldset {
@@ -38,7 +38,7 @@
             font-weight: bold;
             margin-bottom: 20px;
         }
-        .form-container .form-control, .form-container .form-select {
+        .form-container .form-control {
             border-radius: 0.375rem;
         }
         .form-container .btn-submit {
@@ -49,15 +49,15 @@
         .form-container .btn-submit:hover {
             background-color: #0056b3;
         }
-        .form-container .form-check {
-            margin-top: 15px;
+        select.form-select {
+            border-radius: 0.375rem;
         }
     </style>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Cadastro Animal</a>
+            <a class="navbar-brand" href="#">Cadastrar Cliente</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -91,54 +91,50 @@
     </nav>
 
     <div class="form-container d-flex flex-column justify-content-center align-items-center">
-        <form action="cadastroAnimalExe.php" method="post">
+        <form action="cadastroClienteExe.php" method="post">
             <fieldset>
-                <legend>Cadastro de Animal</legend>
+                <legend>Cadastro de Clientes</legend>
                 <div class="row g-3 align-items-center">
                     <div class="col-auto">
-                        <label for="nome" class="col-form-label">Nome do Animal:</label>
+                        <label for="nome" class="col-form-label">Nome do Cliente:</label>
                     </div>
                     <div class="col-auto">
-                        <input type="text" name="nome" id="nome" class="form-control" aria-describedby="NomeAnimal" required>
-                    </div>
-                </div>
-                <div class="row g-3 align-items-center">
-                    <div class="col-auto">
-                        <label for="especie" class="col-form-label">Espécie do Animal:</label>
+                        <input type="text" name="nome" id="nome" class="form-control" aria-describedby="NomeCliente" required>
                     </div>
                     <div class="col-auto">
-                        <input type="text" name="especie" id="especie" class="form-control" aria-describedby="EspecieAnimal" required>
-                    </div>
-                </div>
-                <div class="row g-3 align-items-center">
-                    <div class="col-auto">
-                        <label for="raca" class="col-form-label">Raça do Animal:</label>
+                        <label for="email" class="col-form-label">Email do Cliente:</label>
                     </div>
                     <div class="col-auto">
-                        <input type="text" name="raca" id="raca" class="form-control" aria-describedby="RacaAnimal" required>
-                    </div>
-                </div>
-                <div class="row g-3 align-items-center">
-                    <div class="col-auto">
-                        <label for="data_nascimento" class="col-form-label">Data de Nascimento:</label>
+                        <input type="email" name="email" id="email" class="form-control" aria-describedby="EmailCliente" required>
                     </div>
                     <div class="col-auto">
-                        <input type="date" name="data_nascimento" id="data_nascimento" class="form-control" aria-describedby="DataNascimentoAnimal" required>
+                        <label for="endereco" class="col-form-label">Endereço do Cliente:</label>
                     </div>
-                </div>
-                <div class="form-check">
-                    <input type="checkbox" id="castrado" name="castrado" value="1" class="form-check-input" checked>
-                    <label for="castrado" class="form-check-label">Castrado</label>
+                    <div class="col-auto">
+                        <input type="text" name="endereco" id="endereco" class="form-control" aria-describedby="EnderecoCliente" required>
+                    </div>
+                    <div class="col-auto">
+                        <label for="bairro" class="col-form-label">Bairro do Cliente:</label>
+                    </div>
+                    <div class="col-auto">
+                        <input type="text" name="bairro" id="bairro" class="form-control" aria-describedby="BairroCliente" required>
+                    </div>
+                    <div class="col-auto">
+                        <label for="cep" class="col-form-label">CEP do Cliente:</label>
+                    </div>
+                    <div class="col-auto">
+                        <input type="text" name="cep" id="cep" class="form-control" aria-describedby="CepCliente" required>
+                    </div>
                 </div>
                 <div class="mb-3">
-                    <label for="pessoa" class="form-label">Dono</label>
-                    <select class="form-select" name="pessoa" id="pessoa">
+                    <label for="cidade" class="form-label">Cidade</label>
+                    <select name="cidade" id="cidade" class="form-select" required>
                         <?php 
                             include('includes/conexao.php');
-                            $sql = "SELECT * FROM Pessoa";
+                            $sql = "SELECT * FROM cidade";
                             $result = mysqli_query($con, $sql);
-                            while ($row = mysqli_fetch_array($result)) {
-                                echo "<option value='".$row['id']."'>".$row['nome']."/".$row['email']."</option>";
+                            while($row = mysqli_fetch_array($result)) {
+                                echo "<option value='".$row['id']."'>".$row['nome']."/".$row['estado']."</option>";
                             }
                         ?>
                     </select>

@@ -1,9 +1,17 @@
+<?php
+    include('includes/conexao.php');
+    $id = $_GET['id'];
+    $sql ="SELECT * FROM Animal WHERE id=$id";
+    $result =  mysqli_query($con,$sql);
+    $row = mysqli_fetch_array($result);
+
+?>
 <!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Cadastro Animal</title>
+    <title>Altera Animal</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <style>
         body {
@@ -57,7 +65,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Cadastro Animal</a>
+            <a class="navbar-brand" href="#">Alterar Animal</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -91,15 +99,15 @@
     </nav>
 
     <div class="form-container d-flex flex-column justify-content-center align-items-center">
-        <form action="cadastroAnimalExe.php" method="post">
+        <form action="alteraAnimalExe.php" method="post">
             <fieldset>
-                <legend>Cadastro de Animal</legend>
+                <legend>Alterar Animal</legend>
                 <div class="row g-3 align-items-center">
                     <div class="col-auto">
                         <label for="nome" class="col-form-label">Nome do Animal:</label>
                     </div>
                     <div class="col-auto">
-                        <input type="text" name="nome" id="nome" class="form-control" aria-describedby="NomeAnimal" required>
+                        <input type="text" name="nome" id="nome" class="form-control" aria-describedby="NomeAnimal" <?php echo $row['nome']?>required>
                     </div>
                 </div>
                 <div class="row g-3 align-items-center">
@@ -107,7 +115,7 @@
                         <label for="especie" class="col-form-label">Espécie do Animal:</label>
                     </div>
                     <div class="col-auto">
-                        <input type="text" name="especie" id="especie" class="form-control" aria-describedby="EspecieAnimal" required>
+                        <input type="text" name="especie" id="especie" class="form-control" aria-describedby="EspecieAnimal"<?php echo $row['especie']?> required>
                     </div>
                 </div>
                 <div class="row g-3 align-items-center">
@@ -115,7 +123,7 @@
                         <label for="raca" class="col-form-label">Raça do Animal:</label>
                     </div>
                     <div class="col-auto">
-                        <input type="text" name="raca" id="raca" class="form-control" aria-describedby="RacaAnimal" required>
+                        <input type="text" name="raca" id="raca" class="form-control" aria-describedby="RacaAnimal" <?php echo $row ['raca']?>required>
                     </div>
                 </div>
                 <div class="row g-3 align-items-center">
@@ -123,12 +131,15 @@
                         <label for="data_nascimento" class="col-form-label">Data de Nascimento:</label>
                     </div>
                     <div class="col-auto">
-                        <input type="date" name="data_nascimento" id="data_nascimento" class="form-control" aria-describedby="DataNascimentoAnimal" required>
+                        <input type="date" name="data_nascimento" id="data_nascimento" class="form-control" aria-describedby="DataNascimentoAnimal" value="<?php echo $row['data_nascimento']?>"required>
                     </div>
                 </div>
                 <div class="form-check">
                     <input type="checkbox" id="castrado" name="castrado" value="1" class="form-check-input" checked>
-                    <label for="castrado" class="form-check-label">Castrado</label>
+                    <label for="castrado" class="form-check-label" value="<?php echo $row['castrado']?>">Castrado</label>
+                </div>
+                <div>
+                  <input type="hidden" name='id' value="<?php echo $row['id']?>">;
                 </div>
                 <div class="mb-3">
                     <label for="pessoa" class="form-label">Dono</label>
@@ -137,14 +148,14 @@
                             include('includes/conexao.php');
                             $sql = "SELECT * FROM Pessoa";
                             $result = mysqli_query($con, $sql);
-                            while ($row = mysqli_fetch_array($result)) {
-                                echo "<option value='".$row['id']."'>".$row['nome']."/".$row['email']."</option>";
+                            while ($rowCliente = mysqli_fetch_array($result)) {
+                                echo "<option value='".$rowCliente['id']."' ". ($rowCliente['id'] == $row['id_pessoa'] ? "selected" : "" ).">".$rowCliente['nome']."/".$rowCliente['email']."</option>";
                             }
                         ?>
                     </select>
                 </div>
                 <div>
-                    <button type="submit" class="btn btn-submit">Cadastrar</button>
+                    <button type="submit" class="btn btn-submit">Atualizar</button>
                 </div>
             </fieldset>
         </form>
